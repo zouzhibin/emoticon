@@ -30,6 +30,9 @@
         width: 350px;
         margin: 100px auto;
     }
+    #echoContent{
+      white-space: pre-wrap  
+    }
 </style>
 <div id="textarea">
     <textarea id="emoticon" style="height: 250px;width: 250px">
@@ -94,7 +97,9 @@
                 }
             }
         }
+       
         echoContent.innerHTML = txt
+        
 
     })
     for(var i=0;i<oLi.length;i++){
