@@ -78,27 +78,23 @@
         {title:"跪了",url:'//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/b3/hot_wosuanle_thumb.png'},
         ]
     oBtn.addEventListener("click",function () {
-        debugger
+        // debugger
         var txtValue =  oText.value
         var reg1 = /\[[\u4e00-\u9fa5]+\]/g;
         var reg2 = /\[[\u4e00-\u9fa5]+\]/;
         console.log(txtValue.match(reg1))
         var content = txtValue.match(reg1)
+        var txt=txtValue;
         for(var i=0;i<content.length;i++){
-
             for(var j=0;j<arrDate.length;j++){
                 if(content[i] === '['+arrDate[j].title+']'){
                     var url = arrDate[j].url
-                    // var txt = txtValue.replace(reg2,'<img src='+arrDate[j].url+'>')
-                    // console.log(txt)
-                    var img = document.createElement("img")
-                    img.src=url
-                    echoContent.appendChild(img)
+                    txt = txt.replace(reg2,'<img src='+arrDate[j].url+'>')
                     break;
                 }
             }
-
         }
+        echoContent.innerHTML = txt
 
     })
     for(var i=0;i<oLi.length;i++){
@@ -106,9 +102,6 @@
             var txtValue =  oText.value
             var value = this.getAttribute("title")
             oText.value = txtValue+ '['+value+']'
-            console.log(value)
-
-            //oText
         })
     }
 
