@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul li{list-style: none}
+    ul li{
+        cursor: pointer;
+        float: left;
+        border: 1px solid #e8e8e8;
+        height: 22px;
+        width: 26px;
+        overflow: hidden;
+        margin: -1px 0 0 -1px;
+        padding: 4px 2px;
+        text-align: center;
+    }
+    ul li img{
+        width: 22px;
+        height: 22px;
+    }
+    #textarea{
+        width: 350px;
+        margin: 100px auto;
+    }
+</style>
+<div id="textarea">
+    <textarea id="emoticon" style="height: 250px;width: 250px">
+
+    </textarea>
+    <button id="btn">发布</button>
+    <div style="width: 300px;height: 218px;">
+        <ul>
+            <li title="锦鲤">
+                <img src="//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/94/hbf2019_jinli_thumb.png" alt="">
+            </li>
+            <li title="中国赞">
+                <img src="//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6d/2018new_zhongguozan_org.png" alt="">
+            </li>
+            <li title="二哈">
+                <img src="//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/22/2018new_erha_org.png" alt="">
+            </li>
+            <li title="抱抱">
+                <img src="//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/42/2018new_baobao_thumb.png" alt="">
+            </li>
+            <li title="摊手">
+                <img src="//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/75/2018new_gui_org.png" alt="">
+            </li>
+            <li title="跪了">
+                <img src="//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/b3/hot_wosuanle_thumb.png" alt="">
+            </li>
+        </ul>
+    </div>
+    <div id="echoContent">
+
+    </div>
+</div>
+
+</body>
+<script>
+    var oBtn = document.getElementById("btn")
+    var oLi = document.getElementsByTagName("li")
+    var oText = document.getElementById("emoticon")
+    var echoContent = document.getElementById("echoContent")
+    let arrDate = [
+        {title:"锦鲤",url:'//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/94/hbf2019_jinli_thumb.png'},
+        {title:"中国赞",url:'//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/6d/2018new_zhongguozan_org.png'},
+        {title:"二哈",url:'//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/22/2018new_erha_org.png'},
+        {title:"抱抱",url:'//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/42/2018new_baobao_thumb.png'},
+        {title:"摊手",url:'//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/75/2018new_gui_org.png'},
+        {title:"跪了",url:'//img.t.sinajs.cn/t4/appstyle/expression/ext/normal/b3/hot_wosuanle_thumb.png'},
+        ]
+    oBtn.addEventListener("click",function () {
+        debugger
+        var txtValue =  oText.value
+        var reg1 = /\[[\u4e00-\u9fa5]+\]/g;
+        var reg2 = /\[[\u4e00-\u9fa5]+\]/;
+        console.log(txtValue.match(reg1))
+        var content = txtValue.match(reg1)
+        for(var i=0;i<content.length;i++){
+
+            for(var j=0;j<arrDate.length;j++){
+                if(content[i] === '['+arrDate[j].title+']'){
+                    var url = arrDate[j].url
+                    // var txt = txtValue.replace(reg2,'<img src='+arrDate[j].url+'>')
+                    // console.log(txt)
+                    var img = document.createElement("img")
+                    img.src=url
+                    echoContent.appendChild(img)
+                    break;
+                }
+            }
+
+        }
+
+    })
+    for(var i=0;i<oLi.length;i++){
+        oLi[i].addEventListener("click",function () {
+            var txtValue =  oText.value
+            var value = this.getAttribute("title")
+            oText.value = txtValue+ '['+value+']'
+            console.log(value)
+
+            //oText
+        })
+    }
+
+</script>
+</html>
