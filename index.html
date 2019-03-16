@@ -88,19 +88,18 @@
         console.log(txtValue.match(reg1))
         var content = txtValue.match(reg1)
         var txt=txtValue;
-        for(var i=0;i<content.length;i++){
-            for(var j=0;j<arrDate.length;j++){
-                if(content[i] === '['+arrDate[j].title+']'){
-                    var url = arrDate[j].url
-                    txt = txt.replace(reg2,'<img src='+arrDate[j].url+'>')
-                    break;
+        if(content&&content.length){
+            for(var i=0;i<content.length;i++){
+                for(var j=0;j<arrDate.length;j++){
+                    if(content[i] === '['+arrDate[j].title+']'){
+                        var url = arrDate[j].url
+                        txt = txt.replace(reg2,'<img src='+arrDate[j].url+'>')
+                        break;
+                    }
                 }
             }
         }
-       
         echoContent.innerHTML = txt
-        
-
     })
     for(var i=0;i<oLi.length;i++){
         oLi[i].addEventListener("click",function () {
